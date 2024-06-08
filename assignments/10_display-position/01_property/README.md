@@ -1,169 +1,207 @@
 # CSS Display Property
 
-CSS display property, bir elementin nasıl görüntüleneceğini belirler. Bu kılavuzda, bu önemli özelliğin farklı değerlerini detaylı bir şekilde inceleyeceğiz. 
+Bu bölümde, CSS'de çeşitli `display` özellik değerlerinin kullanımını gösteren, bir bölüm ve bir altbilgi içeren yapılandırılmış bir düzen içindeki HTML öğelerine uygulanan ayrıntılı bir örnek sunulmaktadır.
+## HTML Structure
 
-## Display Değerleri ve Özellikleri
+Bir üstbilgi, çeşitli öğeler içeren bir bölüm ve bir altbilgi ile temel bir HTML yapısı oluşturacağız. Bu, farklı `display` özellik değerlerinin düzeni nasıl etkilediğini göstermeye yardımcı 
+olacaktır.
 
-### display: inline
+```html
+<!DOCTYPE html>
+<html lang="tr">
 
-Bu değer, bir elementi satır içi (inline) element olarak görüntüler. Örneğin `<span>` etiketi gibi. Bu durumda, yükseklik ve genişlik özellikleri etkisiz kalacaktır. 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Display Property Example</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
 
-#### Örnek:
+<body>
+    <header>
+        <h1>CSS Display Property Örneği</h1>
+    </header>
+    <section>
+        <h2>Örnekler</h2>
+        <div class="inline-example">Bu bir inline elementtir.</div>
+        <div class="inline-block-example">Bu bir inline-block elementtir.</div>
+        <div class="block-example">Bu bir block elementtir.</div>
+        <div class="none-example">Bu element görünmeyecek.</div>
+        <div class="hidden-example">Bu element gizlenmiş, ancak hala yer kaplamaktadır.</div>
+        <div class="flex-container">
+            <div class="flex-item">Flex Item 1</div>
+            <div class="flex-item">Flex Item 2</div>
+            <div class="flex-item">Flex Item 3</div>
+        </div>
+        <div class="grid-container">
+            <div class="grid-item">Grid Item 1</div>
+            <div class="grid-item">Grid Item 2</div>
+            <div class="grid-item">Grid Item 3</div>
+            <div class="grid-item">Grid Item 4</div>
+        </div>
+        <div class="table-example">
+            <div class="table-row">Satır 1</div>
+            <div class="table-row">Satır 2</div>
+        </div>
+    </section>
+    <footer>
+        <p>Bu, footer alanıdır.</p>
+    </footer>
+</body>
+
+</html>
+```
+
+## CSS Styling
+
+HTML öğelerini biçimlendirmek ve farklı `display` özellik değerlerini göstermek için CSS kodu aşağıda verilmiştir.
 
 ```css
-span {
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header,
+footer {
+    background-color: #f8f9fa;
+    text-align: center;
+    padding: 20px;
+}
+
+section {
+    padding: 20px;
+}
+
+h1,
+h2 {
+    color: #333;
+}
+
+/* Display inline */
+.inline-example {
     display: inline;
+    background-color: #e7f3fe;
+    padding: 10px;
+    border: 1px solid #b3d4fc;
 }
-```
-```html
-<span>Bu bir satır içi elemandır.</span>
-```
-### display: inline-block
 
-Bu değer, bir elementi satır içi blok (inline-level block) konteyneri olarak görüntüler. Element, satır içi bir element gibi formatlanır, ancak yükseklik ve genişlik değerleri uygulanabilir.
-
-#### Örnek:
-
-```css
-div {
+/* Display inline-block */
+.inline-block-example {
     display: inline-block;
-    width: 100px;
-    height: 50px;
+    background-color: #dff0d8;
+    padding: 10px;
+    border: 1px solid #c3e6cb;
+    width: 200px;
+    height: 100px;
 }
-```
 
-```html
-<div>Bu bir inline-block elemandır.</div>
-```
-
-### display: block
-
-Bu değer, bir elementi blok elementi (block element) olarak görüntüler. Örneğin `<p>` etiketi gibi. Bu durumda, yeni bir satırda başlar ve tüm genişliği kaplar.
-
-#### Örnek:
-
-```css
-p {
+/* Display block */
+.block-example {
     display: block;
+    background-color: #f2dede;
+    padding: 10px;
+    border: 1px solid #ebccd1;
+    width: 100%;
+    margin-top: 10px;
 }
-```
 
-
-
-```html
-<p>Bu bir blok elemandır.</p>
-```
-
-### display: none
-
-Bu değer, elementi tamamen kaldırır. Elementin görsel olarak hiçbir varlığı olmaz ve sayfa düzenini etkilemez.
-
-#### Örnek:
-
-```css
-div {
+/* Display none */
+.none-example {
     display: none;
 }
-```
 
-
-
-```html
-<div>Bu eleman görünmeyecek.</div>
-```
-
-### visibility: hidden
-
-Bu özellik, bir elementi gizler. Ancak, element hala aynı alanı kaplar ve sayfa düzenini etkilemeye devam eder.
-
-#### Örnek:
-
-```css
-div {
+/* Visibility hidden */
+.hidden-example {
     visibility: hidden;
+    background-color: #fcf8e3;
+    padding: 10px;
+    border: 1px solid #faebcc;
+    margin-top: 10px;
 }
-```
 
-```html
-<div>Bu eleman gizlenmiş, ancak hala yer kaplamaktadır.</div>
-```
-
-## İleri Seviye Display Değerleri
-
-### display: flex
-
-Flexbox modelini etkinleştirir ve esnek konteyner (flex container) oluşturur. Flex konteyner içindeki çocuk elemanlar, esnek (flexible) kutular olarak düzenlenir.
-
-#### Örnek:
-
-```css
-div {
+/* Flex container */
+.flex-container {
     display: flex;
+    background-color: #f5f5f5;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-top: 10px;
 }
-```
 
-```html
-<div>
-    <div>Çocuk 1</div>
-    <div>Çocuk 2</div>
-    <div>Çocuk 3</div>
-</div>
-```
+.flex-item {
+    background-color: #d9edf7;
+    padding: 20px;
+    border: 1px solid #bce8f1;
+    margin-right: 10px;
+}
 
-### display: grid
-
-CSS Grid Layout modelini etkinleştirir ve grid konteyner oluşturur. Grid konteyner içindeki çocuk elemanlar, grid öğeleri olarak düzenlenir.
-
-#### Örnek:
-
-```css
-div {
+/* Grid container */
+.grid-container {
     display: grid;
     grid-template-columns: auto auto;
+    background-color: #f5f5f5;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-top: 10px;
 }
-```
 
-```html
-<div>
-    <div>Öğe 1</div>
-    <div>Öğe 2</div>
-    <div>Öğe 3</div>
-    <div>Öğe 4</div>
-</div>
-```
+.grid-item {
+    background-color: #dff0d8;
+    padding: 20px;
+    border: 1px solid #c3e6cb;
+    margin: 5px;
+}
 
-### display: table
-
-Elementi tablo (table) gibi görüntüler. Tablo düzeninde (table layout) bir element oluşturur.
-
-#### Örnek:
-
-```css
-div {
+/* Display table */
+.table-example {
     display: table;
+    width: 100%;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+}
+
+.table-row {
+    display: table-row;
+    background-color: #e9ecef;
+    padding: 10px;
+    border: 1px solid #dee2e6;
 }
 ```
 
- ```html
-<div>
-    <div>Satır 1</div>
-    <div>Satır 2</div>
-</div>
-```
+## Explanation
 
-## Kritik Analiz
+### header ve footer
 
-Belirtilen display değerleri, bir web sayfasının düzenini ve stilini kontrol etmek için çok önemlidir. Ancak, "visibility: hidden" özelliğinin display özellikleri arasında yer almaması gerektiği not edilmelidir. Bu özellik, bir elementin görünürlüğünü kontrol eder ve display: none ile karıştırılmamalıdır.
+* **header** ve **footer** elementleri, sayfanın başlık ve alt bilgi bölümlerini tanımlar. Bu elementler genellikle sabit içerik barındırır ve tüm sayfa boyunca aynı kalır.
+  
 
-### Özet
+### section
 
-* **inline** : Elementi satır içi element yapar. Yükseklik ve genişlik uygulanamaz.
-* **inline-block** : Satır içi blok elementi. Yükseklik ve genişlik uygulanabilir.
-* **block** : Blok element. Yeni satırda başlar ve tüm genişliği kaplar.
-* **none** : Elementi tamamen kaldırır. Sayfa düzenini etkilemez.
-* **visibility: hidden** : Elementi gizler, ancak hala yer kaplar ve sayfa düzenini etkiler.
-* **flex** : Esnek kutu düzeni oluşturur.
-* **grid** : Grid düzeni oluşturur.
-* **table** : Tablo düzeni oluşturur.
+* **section** elementi, sayfa içeriğini mantıksal bölümlere ayırır. Her bir bölüm, belirli bir konuya veya işlevselliğe odaklanabilir.
 
-CSS display property, elementlerin düzenini ve yerleşimini kontrol etmek için kritik bir özelliktir. Bu değerler, web sayfası tasarımının esnekliğini ve kullanıcı deneyimini önemli ölçüde artırabilir. Bu nedenle, bu özelliklerin doğru ve etkili bir şekilde kullanılması, profesyonel web geliştirme pratiğinin temelidir.
+### inline, inline-block ve block
+
+* **inline** : Element satır içi olarak görüntülenir. Yükseklik ve genişlik değerleri etkisizdir.
+* **inline-block** : Element satır içi blok olarak görüntülenir. Yükseklik ve genişlik değerleri uygulanabilir.
+* **block** : Element blok olarak görüntülenir ve yeni bir satırda başlar, tüm genişliği kaplar.
+
+### none ve visibility: hidden
+
+* **display: none** : Element tamamen kaldırılır ve sayfa düzenini etkilemez.
+* **visibility: hidden** : Element gizlenir, ancak hala yer kaplar ve sayfa düzenini etkiler.
+
+### flex ve grid
+
+* **flex** : Esnek konteyner oluşturur. İçindeki çocuk elemanlar esnek kutular olarak düzenlenir.
+* **grid** : Grid konteyner oluşturur. İçindeki çocuk elemanlar grid öğeleri olarak düzenlenir.
+
+### table
+
+* **display: table** : Element tablo gibi görüntülenir. İçindeki çocuk elemanlar tablo satırları olarak düzenlenir.
+
+Bu örnekler, CSS display property'nin farklı değerlerinin bir web sayfasının düzenini nasıl etkilediğini net bir şekilde gösterir. Doğru kullanıldığında, bu özellikler web tasarımında büyük esneklik ve kontrol sağlar.
